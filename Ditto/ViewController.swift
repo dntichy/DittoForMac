@@ -19,16 +19,20 @@ class ViewController: NSViewController {
     @objc dynamic var sorts = [NSSortDescriptor]()
     @objc dynamic var filter: NSPredicate?
     
+    @IBOutlet var arrayController: NSArrayController!
+    
     
     override func viewDidLoad() {
-        myDataList.append(ClipboardRecord.init(id: 1, desc : "xx"))
+//        myDataList.append(ClipboardRecord.init( desc : "xx", pasteBoardItemHash: ))
+        
+        
         
         NotificationCenter.default.addObserver(self, selector: #selector(onPasteboardChanged), name: .NSPasteboardDidChange, object: nil)
         
         //        let smithPredicate = NSPredicate(format: "name = %@", "Chello3")
         //        filter = smithPredicate
         self.tableView.delegate = self;
-
+        
     }
     
     var copyInvokedFromRowClicking = false
@@ -40,9 +44,7 @@ class ViewController: NSViewController {
             copyInvokedFromRowClicking = false
             return
         }
-        print("++++ inPaseBoard")
-        
-        
+      
         guard let pb = notification.object as? NSPasteboard else { return }
         guard let items = pb.pasteboardItems else { return }
         
@@ -50,42 +52,66 @@ class ViewController: NSViewController {
             return
         }
         
+        let storedDesc = items.first?.string(forType: .string)
+        for el in myDataList {
+            if el.desc == storedDesc! {
+                return
+            }
+        }
+        let storedHash = items.first?.hashValue
+             for el in myDataList {
+                 if el.pasteBoardItemHash == storedHash! {
+                     return
+                 }
+             }
         
+        let pasteBoardHashForItem = items.first?.hashValue
         
         let string = items.first?.string(forType: .string)
         let file = items.first?.data(forType: .fileContents)
         let picure = items.first?.data(forType: .tiff)
         
         if(string != nil){
-  
-            myDataList.append(ClipboardRecord.init(id: 1, desc: string!))
+            var clData = ClipboardRecord.init(desc: string!, pasteBoardItemHash: pasteBoardHashForItem!)
+            clData.data = Data(string!.utf8)
+            clData.type = ".string"
+            
+            myDataList.append(clData)
         }
         if(picure != nil){
-            myDataList.append(ClipboardRecord.init(id: 2, desc: picure!.description))
+            myDataList.append(ClipboardRecord.init( desc: picure!.description, pasteBoardItemHash: pasteBoardHashForItem!))
         }
         if(file  !=  nil){
             //best will be to go to location and copy
-            myDataList.append(ClipboardRecord.init(id: 4, desc: file!.description))
+            myDataList.append(ClipboardRecord.init(desc: file!.description,pasteBoardItemHash: pasteBoardHashForItem!))
         }
     }
-    
 }
 
 
-
-
+extension ViewController : NSTableViewDataSource{
+    
+    
+}
 
 extension ViewController: NSTableViewDelegate {
-
+    
     func tableViewSelectionDidChange(_ notification: Notification) {
-
+        
         let selectedRow = tableView.selectedRow
-        let myRowData = myDataList[selectedRow]
-        let textToBeInserted = myRowData.desc
-
+        if selectedRow == -1 {return}
+        
+        print(arrayController.selectionIndex)
+        
+        let mySelectedData = arrayController.selectedObjects[0] as! ClipboardRecord
+       
+        let textToBeInserted = mySelectedData.desc
+        
         copyStringToPasteboard(stringToCopy:  textToBeInserted)
     }
-
+    
+    
+    
     func copyStringToPasteboard(stringToCopy:String){
         print("copying \(stringToCopy) to paste")
         let pasteboard = NSPasteboard.general
@@ -104,21 +130,17 @@ extension ViewController: NSTableViewDelegate {
     //    pasteboard.setData(gifData, forType: "com.compuserve.gif");
     //    pasteboard.setData(gifData, forType: String(kUTTypeGIF)); // crap! only copies the first frame. Worthless for us, the gif people
     //}
-
+    
 }
 
 
-
-
-//
-//
 //extension ViewController: NSTableViewClickableDelegate{
 //    func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn: Int) {
 //
 //    }
 //}
-//
-//
+
+
 ////Just hokus pokus :)
 //protocol NSTableViewClickableDelegate: NSTableViewDelegate {
 //    func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn: Int)
@@ -140,6 +162,4 @@ extension ViewController: NSTableViewDelegate {
 //
 //        delegate.tableView(self, didClickRow: clickedRow, didClickColumn: clickedColumn)
 //    }
-//
-//
 //}
