@@ -11,16 +11,18 @@
 		7A62EF92241C4C8B006A3255 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A62EF91241C4C8B006A3255 /* ViewController.swift */; };
 		7A62EF94241C4C8C006A3255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A62EF93241C4C8C006A3255 /* Assets.xcassets */; };
 		7A62EF97241C4C8C006A3255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A62EF95241C4C8C006A3255 /* Main.storyboard */; };
+		7A8F454D242778E600CE9C15 /* ClipboardRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F454C242778E600CE9C15 /* ClipboardRecord.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7A62EF8C241C4C8B006A3255 /* Ditto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ditto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A62EF8C241C4C8B006A3255 /* Ditto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Ditto.app; path = /Users/aladin/Documents/XcodeProjects/Ditto/build/Debug/Ditto.app; sourceTree = "<absolute>"; };
 		7A62EF8F241C4C8B006A3255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A62EF91241C4C8B006A3255 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7A62EF93241C4C8C006A3255 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A62EF96241C4C8C006A3255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A62EF98241C4C8C006A3255 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A62EF99241C4C8C006A3255 /* Ditto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ditto.entitlements; sourceTree = "<group>"; };
+		7A8F454C242778E600CE9C15 /* ClipboardRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipboardRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,16 +40,7 @@
 			isa = PBXGroup;
 			children = (
 				7A62EF8E241C4C8B006A3255 /* Ditto */,
-				7A62EF8D241C4C8B006A3255 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		7A62EF8D241C4C8B006A3255 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7A62EF8C241C4C8B006A3255 /* Ditto.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7A62EF8E241C4C8B006A3255 /* Ditto */ = {
@@ -59,6 +52,7 @@
 				7A62EF95241C4C8C006A3255 /* Main.storyboard */,
 				7A62EF98241C4C8C006A3255 /* Info.plist */,
 				7A62EF99241C4C8C006A3255 /* Ditto.entitlements */,
+				7A8F454C242778E600CE9C15 /* ClipboardRecord.swift */,
 			);
 			path = Ditto;
 			sourceTree = "<group>";
@@ -107,7 +101,7 @@
 				Base,
 			);
 			mainGroup = 7A62EF83241C4C8B006A3255;
-			productRefGroup = 7A62EF8D241C4C8B006A3255 /* Products */;
+			productRefGroup = 7A62EF83241C4C8B006A3255;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -135,6 +129,7 @@
 			files = (
 				7A62EF92241C4C8B006A3255 /* ViewController.swift in Sources */,
 				7A62EF90241C4C8B006A3255 /* AppDelegate.swift in Sources */,
+				7A8F454D242778E600CE9C15 /* ClipboardRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
